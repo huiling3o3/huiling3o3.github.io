@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login Form</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="user-email">Email address</label>
+                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
+                    placeholder="Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="user-psw">Password</label>
+                <input type="password" class="form-control" id="user-password" placeholder="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            var apiKey = "5f2a7d2167e4950327927ce4";
+            var myDB = "testing-1510";
+            var myCollection = "people";
+
+            $("#login-form").submit(function (e) {
+                console.log("check login");
+                event.preventDefault();
+
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "",
+                    "method": "GET",
+                    "headers": {
+                        "content-type": "application/json",
+                        "x-apikey": apiKey,
+                        "cache-control": "no-cache"
+                    },
+                    "error": function (jqXhr, textStatus, errorMessage) {
+                        Console.log('Error: ' + errorMessage);
+                    }
+                }
+
+                //retrieve form values
+                var email = $("#user-email").val();
+                var password = $("#user-password").val();
+
+                $.ajax(settings).done(function (data) {
+                    console.log("successfully log into db");
+                    console.log(data);
+
+                    //do a jquery loop of json objects based on their keys(indexes)
+                    console.log("total users: " + data.length);
+                    var success = false;
+                    var id = "";
+                    $.each(data, function (key, value) {
+                        var loginDetails = {
+                            email: data[key].email,
+                            password: data[key].password
+                        }
+                        if (email === data[key].email && password === data[key].password) {
+                            success = true;
+                            id = data[key]._id;
+                        }
+
+                    });//end each loop
+
+                    if (success === true) {
+                        alert("login successfuly");
+                        setActive(success, id);
+                        // console.log(success + "\n" + id);
+                    }
+                    else {
+                        alert("wrong email or password");
+                        $("#login-form")[0].reset()
+                    }
+                });
+
+                function setActive(success, id) {
+                    //set user as active to retrieve user details from another page
+                    console.log("Setting user staus as active");
+                    var activeData = { "active": success }
+                    var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
+                        "method": "PATCH",
+                        "headers": {
+                            "content-type": "application/json",
+                            "x-apikey": apiKey,
+                            "cache-control": "no-cache"
+                        },
+                        "error": function (jqXhr, textStatus, errorMessage) {
+                            Console.log('Error: ' + errorMessage);
+                        },
+                        "processData": false,
+                        "data": JSON.stringify(activeData)
+                    }
+
+                    $.ajax(settings).done(function (response) {
+                        console.log("User Status Updated: " + success);
+                    });
+                }
+
+            });//end of login function
+
+
+        }); //end doc ready
+    </script>
+</body>
+
+</html>
