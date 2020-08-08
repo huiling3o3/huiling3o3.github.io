@@ -1,128 +1,576 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Login Example</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Steps By Step - Index</title>
+  <meta content="Index Page" name="description">
+
+  <!--Icons-->
+  <link rel="icon" type="image/x-icon" href="assets/img/steps.ico" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d2c6ccf9df.js" crossorigin="anonymous"></script>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
     <div class="container">
-        <h1>Login Form</h1>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="user-email">Email address</label>
-                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
-                    placeholder="Email" required>
-            </div>
 
-            <div class="form-group">
-                <label for="user-psw">Password</label>
-                <input type="password" class="form-control" id="user-password" placeholder="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+      <div class="logo float-left">
+        <a href="index.html"><img src="assets/img/logo.png" alt="logo img" class="img-fluid"></a>
+      </div>
+
+      <nav class="main-nav float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="mealplan.html">Meal Plan</a></li>
+          <li><a href="myplan.html">My Plan</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav><!-- .main-nav -->
+
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
-        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-        crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            var apiKey = "5f2a7d2167e4950327927ce4";
-            var myDB = "testing-1510";
-            var myCollection = "people";
+  </header><!-- #header -->
 
-            $("#login-form").submit(function (e) {
-                console.log("check login");
-                event.preventDefault();
+  <!-- ======= Intro Section ======= -->
+  <section id="intro" class="clearfix">
+    <div class="container" data-aos="fade-up">
 
-                var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "",
-                    "method": "GET",
-                    "headers": {
-                        "content-type": "application/json",
-                        "x-apikey": apiKey,
-                        "cache-control": "no-cache"
-                    },
-                    "error": function (jqXhr, textStatus, errorMessage) {
-                        Console.log('Error: ' + errorMessage);
-                    }
-                }
+      <div class="intro-info" data-aos="zoom-in" data-aos-delay="100">
+        <h2>Come on a <span>journey</span><br>with us to be a <span>step closer</span> to a healthier and fitter
+          lifestyle.</h2>
+        <div>
+          <a href="signup.html" class="btn-get-started">Get Started</a>
+          <a href="login.html" class="btn-login">Login</a>
+        </div>
+      </div>
 
-                //retrieve form values
-                var email = $("#user-email").val();
-                var password = $("#user-password").val();
+    </div>
+  </section><!-- End Intro Section -->
 
-                $.ajax(settings).done(function (data) {
-                    console.log("successfully log into db");
-                    console.log(data);
+  <main id="main">
 
-                    //do a jquery loop of json objects based on their keys(indexes)
-                    console.log("total users: " + data.length);
-                    var success = false;
-                    var id = "";
-                    $.each(data, function (key, value) {
-                        var loginDetails = {
-                            email: data[key].email,
-                            password: data[key].password
-                        }
-                        if (email === data[key].email && password === data[key].password) {
-                            success = true;
-                            id = data[key]._id;
-                        }
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="section-bg">
+      <div class="container" data-aos="fade-up">
 
-                    });//end each loop
+        <header class="section-header">
+          <h3>Our Features</h3>
+          <p>Features we have implemented in our service that you can look forward to.</p>
+        </header>
 
-                    if (success === true) {
-                        alert("login successfuly");
-                        setActive(success, id);
-                        // console.log(success + "\n" + id);
-                    }
-                    else {
-                        alert("wrong email or password");
-                        $("#login-form")[0].reset()
-                    }
-                });
+        <div class="row justify-content-center">
 
-                function setActive(success, id) {
-                    //set user as active to retrieve user details from another page
-                    console.log("Setting user staus as active");
-                    var activeData = { "active": success }
-                    var settings = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
-                        "method": "PATCH",
-                        "headers": {
-                            "content-type": "application/json",
-                            "x-apikey": apiKey,
-                            "cache-control": "no-cache"
-                        },
-                        "error": function (jqXhr, textStatus, errorMessage) {
-                            Console.log('Error: ' + errorMessage);
-                        },
-                        "processData": false,
-                        "data": JSON.stringify(activeData)
-                    }
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-checkmark-outline" style="color: #ff689b;"></i>
 
-                    $.ajax(settings).done(function (response) {
-                        console.log("User Status Updated: " + success);
-                    });
-                }
+              </div>
+              <h4 class="title">Set Smart Goals</h4>
+              <p class="description">Enable users to set Specific, Measurable, Achievable, Relevant, Time-Bound
+                (S.M.A.R.T) Goals.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
+              <h4 class="title">Recommended Meal Plan</h4>
+              <p class="description">Recommend a meal plan based on user's dietary preference, food allergy or food to
+                exclude and target calories</p>
+            </div>
+          </div>
 
-            });//end of login function
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <div class="icon">
+                <i class="ion-ios-calculator-outline" style="color: #3fcdc7;"></i></ion-icon>
+              </div>
+              <h4 class="title">Calories Calculator</h4>
+              <p class="description">Calculate the recommended calories requirement for the day.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
+              <h4 class="title">Track Daily Weight Progress</h4>
+              <p class="description">Weight Tracker stores your weight in a database, keeps track of your goal, and
+                provides you progress reports.</p>
+            </div>
+          </div>
 
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-time-outline" style="color: #4680ff;"></i></div>
+              <h4 class="title">Planned Weekly Exercise</h4>
+              <p class="description">Recommends the Weekly Exercise Plans for the users based on their activity level.
+              </p>
+            </div>
+          </div>
 
-        }); //end doc ready
-    </script>
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+    <!-- ======= About Section ======= -->
+    <section id="about">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>About Us</h3>
+          <p>What We Do. Why We Do. How We Do.</p>
+        </header>
+
+        <div class="row about-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <p>
+              During Covid'19, we saw firsthand how countless of Singaporean's livelihoods and way of life are affected.
+              Many turn to tutorials and online videos of workoiut routines and guides. However, these videos do not
+              address the fact that everyone's body is different and reacts differently. Following the wrong guide or
+              videos might cause harm instead.
+            </p>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="fa fa-question"></i></div>
+              <h4 class="title"><a href="">What We Do</a></h4>
+              <p class="description">We provide a service that helps individuals achieve any goals - from weight loss to
+                a healthier lifestyle</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="fa fa-mountain"></i></div>
+              <h4 class="title"><a href="">Why We Do</a></h4>
+              <p class="description">We aim to help our users adopt winning habits that have long lasting changes</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="fa fa-lightbulb"></i></div>
+              <h4 class="title"><a href="">How We Do</a></h4>
+              <p class="description">We go through rounds of brainstorming and coding trial and errors to create our web
+                application and smart watch</p>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
+            <img src="assets/img/about-img.svg" class="img-fluid" alt="">
+          </div>
+        </div>
+
+        <div class="row about-extra">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="assets/img/about-extra-1.svg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-5 pt-lg-0" data-aos="fade-left">
+            <h4>Why We Do What We Do</h4>
+            <p>
+              After seeing how people exercise wrongly firsthand and not getting the results they want to achieve, we
+              decided to start from basics where they get to follow healthier options and proper ways to achieve a
+              healthier lifestyle
+            </p>
+            <p>
+              We came up with the idea of our Web Application and SmartWatch in hopes that it will aid our users on
+              their journey to a healthier lifestyle
+            </p>
+          </div>
+        </div>
+
+        <div class="row about-extra">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
+            <img src="assets/img/about-extra-2.svg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
+            <h4>How We Do What We Do</h4>
+            <p>
+              Our team first started by coming together for a discussion, choosing what we would like to produce and
+              create a service for
+            </p>
+            <p>
+              After thorough discussion and brainstorming, our group has decided to go for a Winning Habits theme where
+              we provide our users a service to achieve any goals - from weight loss to a healthier lfiestyle
+            </p>
+            <p>
+              We created wireframes as a foundation to visualise what we want our final product to look like and the
+              features they have that our users can look forward to when using our service and products
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us">
+      <div class="container" data-aos="fade-up">
+        <header class="section-header">
+          <h3>Why choose us?</h3>
+          <p>Why you should come on a journey with us to a healthier and better lifestyle.</p>
+        </header>
+
+        <div class="row row-eq-height justify-content-center">
+
+          <div class="col-lg-4 mb-4">
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+              <i class="fa fa-users"></i>
+              <div class="card-body">
+                <h5 class="card-title">Our Team</h5>
+                <p class="card-text">We are a group of passionate programmers and designers who want to make a different
+                  in life.</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+              <i class="fa fa-clipboard-list"></i>
+              <div class="card-body">
+                <h5 class="card-title">Customise A Plan</h5>
+                <p class="card-text">After the assessment, our team will create a plan that will work best for your
+                  fitness journey, taking into account your fitness needs and goals.</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card" data-aos="zoom-in" data-aos-delay="300">
+              <i class="fa fa-trophy"></i>
+              <div class="card-body">
+                <h5 class="card-title">Healthier Lifestyle</h5>
+                <p class="card-text">After following our guides and experiencing our services, you will eventual have a
+                  winning habit towards a healthier lifestyle</p>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row counters" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">274</span>
+            <p>Clients</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">421</span>
+            <p>Projects</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1,364</span>
+            <p>Hours Of Support</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">18</span>
+            <p>Hard Workers</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="section-bg">
+      <div class="container" data-aso="zoom-in">
+
+        <header class="section-header">
+          <h3>Testimonials</h3>
+        </header>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+
+            <div class="owl-carousel testimonials-carousel">
+
+              <div class="testimonial-item">
+                <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+                <p>
+                  I lost 55 lbs and found the confidence to keep it off! Working out with Step-By-Step has been the best
+                  thing that has ever happened to me. They has faith in me when I did not have it in myself.
+                </p>
+              </div>
+
+              <div class="testimonial-item">
+                <img src="assets/img/testimonial-2.jpg" class="testimonial-img" alt="">
+                <h3>Sara Wilsson</h3>
+                <h4>Designer</h4>
+                <p>
+                  I weigh 30 lbs less. My posture has dramatically improved. I no longer have knee pain.
+                </p>
+              </div>
+
+              <div class="testimonial-item">
+                <img src="assets/img/testimonial-3.jpg" class="testimonial-img" alt="">
+                <h3>Jena Karlis</h3>
+                <h4>Store Owner</h4>
+                <p>
+                  I have learned how to live a great life. I am proud to say I have lost nearly 80 lbs. With the
+                  expertise of Step-By-Step, which pushed me to the heights I never thought possible and never gave up
+                  on me.
+                </p>
+              </div>
+
+              <div class="testimonial-item">
+                <img src="assets/img/testimonial-4.jpg" class="testimonial-img" alt="">
+                <h3>Matt Brandon</h3>
+                <h4>Freelancer</h4>
+                <p>
+                  I dropped 3 dress sizes and 35 lbs with Step-By-Step Training. You can too!
+                </p>
+              </div>
+
+              <div class="testimonial-item">
+                <img src="assets/img/testimonial-5.jpg" class="testimonial-img" alt="">
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+                <p>
+                  I have lost over 40 lbs using Step-By-Step. It is a great service for losing weight and it is easy to
+                  use.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3>Team</h3>
+          <p>Meet Our Team of Passionate Programmers and Designers</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/team-1.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Aira Alejandro</h4>
+                  <span>Chief Design Director</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/team-2.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Davier Toh</h4>
+                  <span>Programming Manager</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team-3.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Ethel Lim</h4>
+                  <span>Head Art Director</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="400">
+            <div class="member">
+              <img src="assets/img/team-4.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Ng HuiLing</h4>
+                  <span>Head Programmer</span>
+                  <div class="social">
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="section-bg">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h3>Our Clients</h3>
+          <p>Brands we have worked and collaborated with.</p>
+        </div>
+
+        <div class="row no-gutters clients-wrap clearfix" data-aos="zoom-in" data-aos-delay="100">
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- End Clients Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class='mx-auto' style="width:250px">
+          <h4>Stay Connected With Us</h4>
+          <div class="social-links">
+            <a href=""><i class="fa fa-twitter"></i></a>
+            <a href=""><i class="fa fa-facebook"></i></a>
+            <a href=""><i class="fa fa-instagram"></i></a>
+            <a href=""><i class="fa fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--end of footer-top-->
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Step By Step</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+      -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Edited By Step By Step Team
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
