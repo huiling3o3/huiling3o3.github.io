@@ -27,7 +27,8 @@
 }
 
 .btn-login,
-.btn-signup {
+.btn-signup,
+.btn-generate {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -42,12 +43,23 @@
     border: 2px solid #007bff;
 }
 
+.btn-generate {
+    background: #2f990f;
+    border: 2px solid #2f990f;
+    float: right;
+    margin: 0;
+}
+
 .btn-login:hover,
 .btn-signup:hover {
     background: none;
     color: #007bff;
 }
 
+.btn-generate:hover {
+    background: none;
+    color: #2f990f;
+}
 @media (max-width: 767px) {
     #login,
     #signup {

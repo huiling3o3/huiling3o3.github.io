@@ -1,0 +1,66 @@
+.banner {
+    width: 100%;
+    position: relative;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url("../img/mealplan-bg.jpg") center no-repeat;
+    background-size: cover;
+    padding: 100px 0 20px;
+}
+
+.banner h1 {
+    font-family: "Montserrat", sans-serif;
+    padding: 4%;
+    text-align: center;
+    color: white;
+}
+.mealplan {
+    padding: 60px 20px;
+}
+
+#mealplan-form h5 {
+    text-align: center;
+}
+
+.diet-info-btn {
+    font-size: 15px;
+    color: black;
+}
+
+.diet-info-btn:hover {
+    color: #007bff;
+}
+
+#mealplan-result {
+    margin-top: 3em;
+}
+
+.btn-recipe {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    display: inline-block;
+    padding: 10px 0;
+    width: 200px;
+    text-align: center;
+    border-radius: 15px;
+    transition: 0.5s;
+    color: #fff;
+    background: #033e7c;
+    border: 2px solid #033e7c;
+}
+
+.card {
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+}
+.card-title {
+    font-weight: 500;
+}
+
+.card-text {
+    line-height: 2;
+}
+
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 1.5em;
+    }
+}

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Steps By Step - Login</title>
-    <meta content="Login Page" name="description">
+    <title>Steps By Step - Meal Plan</title>
+    <meta content="Meal Plan Page" name="description">
 
     <!--Icons-->
     <link rel="icon" type="image/x-icon" href="assets/img/steps.ico" />
@@ -30,6 +30,7 @@
     <!-- Custom CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/form.css" rel="stylesheet">
+    <link href="assets/css/mealplan.css" rel="stylesheet">
 </head>
 
 <body>
@@ -55,31 +56,71 @@
         </div>
     </header><!-- #header -->
     <main id="main">
-
-        <section id="login" class="section-bg">
+        <!-- ======= banner Section ======= -->
+        <section class="banner clearfix">
+            <div class="container" data-aos="fade-up">
+                <h1 data-aos="zoom-in" data-aos-delay="100">Your Personalised Meal Plan</h1>
+            </div>
+        </section><!-- End banner Section -->
+        <section class="mealplan">
             <div class="container" data-aos="zoom-in">
                 <div class="row">
-                    <div class="col-md-6 login-box">
-                        <form id="login-form">
-                            <h3>Login</h3>
-                            <p>New user? <a href="signup.html">Create an account</a></p>
-                            <div class="form-group">
-                                <label for="user-email">Email address</label>
-                                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
-                                    placeholder="name@gmail.com" required>
+                    <!--For Quiz-->
+                    <div class="col-md-6 mx-auto">
+                        <form id="mealplan-form">
+                            <h5>Answer the following questions for us to get a better idea of what to recommend you.
+                            </h5>
+
+                            <div class="form-group row">
+                                <label for="calories" class="col">1. Target Calories:</label>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="calories" name="calories" min="1"
+                                        required>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="user-psw">Password</label>
-                                <input type="password" class="form-control" id="user-password" required>
+                            <div class="form-group row">
+                                <label for="diet" class="col">2. Diet: <a
+                                        href="https://en.wikipedia.org/wiki/List_of_diets" target="blank"
+                                        class="diet-info-btn"><i class="far fa-question-circle"></i></a></label>
+                                <div class="col">
+                                    <select id="diet" name="diet" class="form-control" required>
+                                        <option value="Halal">Halal</option>
+                                        <option value="Paleo">Paleo</option>
+                                        <option value="Atkins">Atkins</option>
+                                        <option value="Zone">Zone</option>
+                                        <option value="Ketogenic">Ketogenic</option>
+                                        <option value="Vegetarian">Vegetarian</option>
+                                        <option value="Vegan">Vegan</option>
+                                        <option value="Weight Watchers">Weight Watchers</option>
+                                        <option value="Low-Carb">Low-Carb</option>
+                                    </select>
+                                </div>
+
                             </div>
-                            <button type="submit" class="btn-login">Sign In</button>
+
+                            <div class="form-group row">
+                                <label for="exclude" class="col">3. Food to exclude:</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="exclude" name="exclude"
+                                        placeholder="e.g eggs,prawn,peanut" pattern="^[A-Za-z,]*$" />
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-generate">Generate</button>
+
                         </form>
                     </div>
-                </div>
 
+                </div>
+                <!--end of quiz row-->
+                <!--result row-->
+                <div class="row" id="mealplan-result" data-aos="zoom-in">
+
+                </div>
+                <!--end of result row-->
             </div>
-        </section>
+        </section><!-- End banner Section -->
 
     </main><!-- End #main -->
 
@@ -107,11 +148,11 @@
             </div>
             <div class="credits">
                 <!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
-          -->
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+              -->
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Edited By Step By Step Team
             </div>
         </div>
@@ -137,7 +178,7 @@
 
     <!-- Custom JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/login.js"></script>
+    <script src="assets/js/mealplan.js"></script>
 </body>
 
 </html>

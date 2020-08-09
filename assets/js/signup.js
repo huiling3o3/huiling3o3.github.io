@@ -76,8 +76,8 @@ $("#signup-form").submit(function (e) {
 
 function Checkuser() {
     //hide everything first
-    $("#login-link").hide();
-    $("#logout-link").hide();
+    $(".login-link").hide();
+    $(".logout-link").hide();
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -111,18 +111,18 @@ function Checkuser() {
 
         if (active === true) {
             //hide signup and login, show logout
-            $("#login-link").hide();
-            $("#logout-link").show();
+            $(".login-link").hide();
+            $(".logout-link").show();
             // sets user id to logout data-id atrr
-            $("#logout").attr('data-id', id);
+            $(".logout").attr('data-id', id);
             //check user id
-            console.log($("#logout").attr('data-id'));
+            console.log($(".logout").attr('data-id'));
             window.location.href = "index.html";
         }
         else {
             //show signup and login, hide logout
-            $("#login-link").show();
-            $("#logout-link").hide();
+            $(".login-link").show();
+            $(".logout-link").hide();
             //  do something if user is not active...
 
         }

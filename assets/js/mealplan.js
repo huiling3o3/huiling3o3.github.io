@@ -1,3 +1,58 @@
+
+//Meal Plan Functions
+
+$("#mealplan-form").submit(function (e) {
+    e.preventDefault();
+    generate();
+    $("#mealplan-form")[0].reset()
+});//end of mealplan function
+
+function generate() {
+    var calories = $("#calories").val();
+    var diet = $("#diet").val();
+    var exclude = $("#exclude").val();
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=" + calories + "&diet=" + diet + "&exclude=" + exclude,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "x-rapidapi-key": "113af93158msh484aa5872948d40p1da5dfjsn6795a9c84df3"
+        },
+        "error": function (jqXhr, textStatus, errorMessage) {
+            console.log('Error: ' + errorMessage);
+        }
+    }
+
+    $.ajax(settings).done(function (data) {
+        var html = "";
+        var start = "<div class='col-sm-4 my-2'><div class='card text-center p-4' ><div class='card-block'><h3 class='card-title'>";
+        var end = "class='btn-recipe' target='_blank'>Recipe</a></div></div></div>";
+        var myObj = data.meals;
+        console.log(data);
+        for (var i = 0; i < data.meals.length; i++) {
+            var type = "";
+            if (i === 0) {
+                type = "Breakfast";
+            }
+            else if (i === 1) {
+                type = "Lunch";
+            }
+            else if (i === 2) { type = "Dinner" }
+
+            html += start + type + "</h3><p class='card-text'>" + myObj[i].title + "<br>Ready in " + myObj[i].readyInMinutes
+                + " mins<br>Servings: " + myObj[i].servings + "</p><a href ='" + myObj[i].sourceUrl + "'" + end;
+        };
+
+        document.getElementById("mealplan-result").innerHTML = html;
+    });
+}
+
+
+//For checking user status and Logout functions
+
 var apiKey = "5f2cbffc013b1c34acef74a0";
 var myDB = "stepbystep-904d";
 var myCollection = "people";
@@ -18,7 +73,6 @@ $(".logout-link").click(function (e) {
     //$("#welcome").hide();
 });
 
-//functions
 function Checkuser() {
     //hide everything first
     $(".login-link").hide();
@@ -62,49 +116,17 @@ function Checkuser() {
             $(".logout-link").attr('data-id', id);
             //check user id
             console.log($(".logout-link").attr('data-id'));
-
-            //Comment this if it is on index.html
-            //window.location.href = "index.html";
-
-            //retrieve user info
-            //RetrieveUserinfo(id);
         }
         else {
             //show signup and login, hide logout
             $(".login-link").show();
             $(".logout-link").hide();
             //  do something if user is not active...
-
+            alert("Please Sign In first, to user this feature :)")
+            window.location.href = "login.html";
         }
     });
 }//end of checkuser function
-
-function RetrieveUserinfo(id) {
-    //get user id to retrieve user details 
-    console.log("Retrieving User details");
-
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
-        "method": "GET",
-        "headers": {
-            "content-type": "application/json",
-            "x-apikey": apiKey,
-            "cache-control": "no-cache"
-        },
-        "error": function (jqXhr, textStatus, errorMessage) {
-            console.log('Error: ' + errorMessage);
-        }
-    }
-
-    $.ajax(settings).done(function (data) {
-        console.log("successfully log into db");
-        console.log(data);
-        //set wlecome text
-        $("#welcome").text("Welcome back, " + data.fullname);
-    });
-}//end of retrieveuserinfo function
 
 function logout(id) {
     //set user as inactive
@@ -131,4 +153,3 @@ function logout(id) {
         console.log("User Status Updated as inactive");
     });
 }//end of logout function
-
