@@ -1,0 +1,64 @@
+#login,
+#signup {
+    padding: 60px 20px 60px;
+}
+
+#login {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("../img/login-bg.jpg") center bottom no-repeat;
+    background-size: cover;
+}
+
+#signup {
+    /*height: 100vh; window full height*/
+    /* background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("../img/login-bg.jpg") center bottom no-repeat;
+    background-size: cover; */
+}
+.login-box,
+.signup-box {
+    padding: 9% 5%;
+    background: white;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.signup-box-right {
+    margin-top: 5.2%;
+}
+
+.btn-login,
+.btn-signup {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 0 20px 20px 0;
+    color: #fff;
+    background: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-login:hover,
+.btn-signup:hover {
+    background: none;
+    color: #007bff;
+}
+
+@media (max-width: 767px) {
+    #login,
+    #signup {
+        background: white;
+    }
+    .login-box,
+    .signup-box {
+        background: white;
+        box-shadow: none;
+    }
+    .signup-box-right {
+        margin: 0;
+    }
+}

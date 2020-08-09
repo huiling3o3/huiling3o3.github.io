@@ -2,9 +2,34 @@
 <html>
 
 <head>
-    <title>Simple Sign Up Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Steps By Step - SignUp</title>
+    <meta content="Login Page" name="description">
+
+    <!--Icons-->
+    <link rel="icon" type="image/x-icon" href="assets/img/steps.ico" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700"
+        rel="stylesheet">
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/d2c6ccf9df.js" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/form.css" rel="stylesheet">
 </head>
 
 <body>
@@ -184,143 +209,156 @@
     </div>
     <!--end of the Modal -->
 
-    <div class="container">
-        <h1>Sign Up Form</h1>
-        <form id="signup-form">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container">
 
-            <div class="form-group">
-                <label for="user-email">Email</label>
-                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
-                    placeholder="name@gmail.com" required>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+            <div class="logo float-left">
+                <a href="index.html"><img src="assets/img/logo.png" alt="logo img" class="img-fluid"></a>
             </div>
 
-            <div class="form-group">
-                <label for="user-psw">Password</label>
-                <input type="password" class="form-control" id="user-psw"
-                    placeholder="at least 6 characters(alphanumeric) *No Space" pattern="^[0-9A-Za-z]{6,}$" required>
-            </div>
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="myplan.html">My Plan</a></li>
+                    <li><a href="mealplan.html">Meal Plan</a></li>
+                    <li class="active"><a href="login.html" id="login-link">Login</a></li>
+                    <li><a href="index.html" id="logout-link">Logout</a></li>
+                </ul>
+            </nav><!-- .main-nav -->
 
-            <div class="form-group">
-                <label for="user-psw">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm-psw" placeholder="Re-enter Password"
-                    onchange="validatePassword()" pattern="^[0-9A-Za-z]{6,}$" required>
-                <small id="passwordHelp" class="form-text text-muted" style="color:red !important"></small>
-            </div>
+        </div>
+    </header><!-- #header -->
+    <main id="main">
+        <section id="signup" class="section-bg">
+            <form class="container" data-aos="zoom-in" id="signup-form">
+                <div class="row signup-box">
+                    <div class="col-md-6">
+                        <h3>Sign Up Form</h3>
 
-            <div class="form-group">
-                <label for="user-name">Full Name</label>
-                <input type="text" class="form-control" id="user-name" placeholder="Eg. Jonny Lim" required>
-            </div>
+                        <div class="form-group">
+                            <label for="user-name">Full Name</label>
+                            <input type="text" class="form-control" id="user-name" placeholder="Eg. Jonny Lim" required>
+                        </div>
 
-            <label for="user-name">Gender</label>
-            <div class="form-group">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="" value="female" checked>
-                    <label class="form-check-label" for="inlineRadio3">Female</label>
+                        <label for="user-name">Gender</label>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="" value="female" checked>
+                                <label class="form-check-label" for="inlineRadio3">Female</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="" value="male">
+                                <label class="form-check-label" for="inlineRadio3">Male</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date of Birth</label>
+                            <input type="date" class="form-control" id="user-dob" placeholder="Eg. Jonny Lim" required>
+                        </div>
+
+                    </div>
+                    <!--end of first col-md-6-->
+
+                    <div class="col-md-6 signup-box-right">
+
+                        <div class="form-group">
+                            <label for="user-email">Email</label>
+                            <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp"
+                                placeholder="name@gmail.com" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                anyone
+                                else.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user-psw">Password</label>
+                            <input type="password" class="form-control" id="user-psw"
+                                placeholder="at least 6 characters(alphanumeric) *No Space" pattern="^[0-9A-Za-z]{6,}$"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user-psw">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm-psw" placeholder="Re-enter Password"
+                                onchange="validatePassword()" pattern="^[0-9A-Za-z]{6,}$" required>
+                            <small id="passwordHelp" class="form-text text-muted" style="color:red !important"></small>
+                        </div>
+
+                        <p>By Clicking Sign Up, you agree to our <a href="#" style="text-decoration: underline"
+                                data-toggle="modal" data-target="#myModal">Terms and Conditions.</a></p>
+                        <button type="submit" class="btn-signup">Sign Up</button>
+                    </div>
+
                 </div>
+                <!--end of row-->
+            </form>
+        </section>
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="" value="male">
-                    <label class="form-check-label" for="inlineRadio3">Male</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="date">Date of Birth</label>
-                <input type="date" class="form-control" id="user-dob" placeholder="Eg. Jonny Lim" required>
-            </div>
-
-            <p>By Clicking Sign Up, you agree to our <a href="#" style="text-decoration: underline" data-toggle="modal"
-                    data-target="#myModal">Terms and Conditions.</a></p>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+    </main><!-- End #main -->
 
     </div>
     <!--end of the container-->
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
-        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-        crossorigin="anonymous"></script>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class='mx-auto' style="width:250px">
+                    <h4>Stay Connected With Us</h4>
+                    <div class="social-links">
+                        <a href="" class="disabled"><i class="fa fa-twitter"></i></a>
+                        <a href="" class="disabled"><i class="fa fa-facebook"></i></a>
+                        <a href="" class="disabled"><i class="fa fa-instagram"></i></a>
+                        <a href="" class="disabled"><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
 
-    <script>
-        var apiKey = "5f2cbffc013b1c34acef74a0";
-        var myDB = "stepbystep-904d";
-        var myCollection = "people";
+        </div>
+        <!--end of footer-top-->
 
-        //create listener for submit
-        var user = {
-            email: "",
-            password: "",
-            fullname: "",
-            gender: "",
-            dob: ""
-        }
-        $(document).ready(function () {
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Step By Step</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+              -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Edited By Step By Step Team
+            </div>
+        </div>
+    </footer><!-- End Footer -->
 
-        }); //end doc ready
-
-        function validatePassword() {
-            if ($("#user-psw").val() !== $("#confirm-psw").val()) {
-                $('#passwordHelp').text('Password do not Match!');
-                return false
-            }
-            else {
-                $('#passwordHelp').text('');
-                return true
-            }
-        }
-
-        $("#signup-form").submit(function (e) {
-            console.log("submitting form details");
-            event.preventDefault();
-            validatePassword()
-            //retrieve form values
-            user.email = $("#user-email").val();
-            user.password = $("#user-psw").val();
-            user.fullname = $("#user-name").val();
-            user.gender = $('input[name="gender"]:checked').val();
-            user.dob = $("#user-dob").val();
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 
-            if (validatePassword() == true) {
-                //set contact format json data
-                let userDocument = {
-                    email: user.email,
-                    password: user.password,
-                    fullname: user.fullname,
-                    gender: user.gender,
-                    dob: user.dob,
-                    active: true,
-                };
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
-                var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "",
-                    "method": "POST",
-                    "headers": {
-                        "content-type": "application/json",
-                        "x-apikey": apiKey,
-                        "cache-control": "no-cache"
-                    },
-                    "processData": false,
-                    "data": JSON.stringify(userDocument)
-                }
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
 
-                $.ajax(settings).done(function (response) {
-                    console.log(response);
-                    console.log("form succesfully submited")
-                });
-            }
-        });// end of signup-form click
-    </script>
+    <!-- Custom JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/signup.js"></script>
 </body>
 
 </html>

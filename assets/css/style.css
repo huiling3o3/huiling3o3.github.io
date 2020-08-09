@@ -8,6 +8,9 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+* {
+  box-sizing: border-box;
+}
 body {
   background: #fff;
   color: #444;
@@ -43,6 +46,10 @@ h6 {
   margin: 0 0 20px 0;
   padding: 0;
 }
+
+/* #main {
+  padding-top: 60px;
+} */
 
 /* Back to top button */
 .back-to-top {
