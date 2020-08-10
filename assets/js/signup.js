@@ -46,6 +46,10 @@ $("#signup-form").submit(function (e) {
             gender: user.gender,
             dob: user.dob,
             active: true,
+            weight: 0,
+            height: 0,
+            activitylvl: "",
+            goal: 0
         };
 
         var settings = {

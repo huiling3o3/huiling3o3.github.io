@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Steps By Step - Meal Plan</title>
+    <meta content="Meal Plan Page" name="description">
+
+    <!--Icons-->
+    <link rel="icon" type="image/x-icon" href="assets/img/steps.ico" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700"
+        rel="stylesheet">
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/d2c6ccf9df.js" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/form.css" rel="stylesheet">
+    <link href="assets/css/plan.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container">
+
+            <div class="logo float-left">
+                <a href="index.html"><img src="assets/img/logo.png" alt="logo img" class="img-fluid"></a>
+            </div>
+
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="myplan.html">My Plan</a></li>
+                    <li><a href="mealplan.html">Meal Plan</a></li>
+                    <li class="active"><a href="login.html" class="login-link">Login</a></li>
+                    <li><a href="index.html" class="logout-link">Logout</a></li>
+                </ul>
+            </nav><!-- .main-nav -->
+
+        </div>
+    </header><!-- #header -->
+    <main id="main">
+        <section class="myplan section-bg">
+            <!-- Quiz container -->
+            <div class="container" id="myplan-quiz" data-aos="zoom-in" data-aos-delay="100">
+                <form id="myplan-form" class="mx-auto">
+                    <h3>Let's take a quiz before we get started!</h3>
+                    <p>This quiz will determine your goal, exercises and calculate your recommended calorie intake!</p>
+                    <h5>Q1. What is current weight and height?</h5>
+                    <div class="form-group">
+                        <label for="weight">Weight: </label>
+                        <input type="number" class="form-control" id="user-weight" name="weight" style="max-width:200px"
+                            placeholder="in Kg" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Height: </label>
+                        <input type="number" class="form-control" id="user-height" name="height" style="max-width:200px"
+                            placeholder="in CM" min="1" required>
+                    </div>
+
+                    <h5>Q2. What is your weekly goal?</h5>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="goal" value="0.25" required>
+                            <label class="form-check-label" for="goal1">Lose 0.25kg</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="goal" value="0.5" required>
+                            <label class="form-check-label" for="goal2">Lose 0.5kg</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="goal" value="0.75" required>
+                            <label class="form-check-label" for="goal3">Lose 0.75kg</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="goal" value="1.0" required>
+                            <label class="form-check-label" for="goal4">Lose 1kg</label>
+                        </div>
+                    </div>
+
+                    <h5>Q3. How active are you?</h5>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activitylvl" value="mostlyseated"
+                                required>
+                            <label class="form-check-label" for="activitylvl1">I’m seated most of the day (eg. office
+                                worker;
+                                taxi driver)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activitylvl" value="standinghalf"
+                                required>
+                            <label class="form-check-label" for="activitylvl2">I’m standing for about half the time (eg.
+                                lecturer; corporate trainer)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activitylvl" value="walkinghalf"
+                                required>
+                            <label class="form-check-label" for="activitylvl3">I’m walking about half the time (e.g.
+                                supervisor, waiter)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activitylvl" value="movingconstantly"
+                                required>
+                            <label class="form-check-label" for="activitylvl4">I’m constantly on the move (e.g. army
+                                trainee,
+                                delivery man)</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-quiz-submit">Submit</button>
+                </form>
+            </div><!-- end of Quiz container -->
+
+            <!--User details container-->
+            <div class="container" id="user-details">
+                <div class="row justify-content-md-center">
+
+                    <!--user's goal,calories,weightlog-->
+                    <div class="col-md-12 col-lg-6 box m-3">
+                        <h5 id="welcome">Welcome back</h5>
+                        <p id="goal"> This week's Goal: Lose 0.5 Kg</p>
+                        <p id="cal-intake"> Recommended calories intake: 2000 kcal/day</p>
+                        <p id="weightlog-message"></p>
+                        <form id="weightlog-form" class="form-inline">
+                            <div class="form-group">
+                                <label for="weightlog">Log Daily Weight:</label>
+                                <input type="number" class="form-control" id="weightlog" name="weight"
+                                    style="max-width:200px" placeholder="in Kg" min="1" required>
+                            </div>
+                            <button type="submit" class="btn-submit">Submit</button>
+                        </form>
+                    </div>
+
+                    <!--progress  chart-->
+                    <div class="col-md-12 col-lg-4 box m-3">
+
+                        <h5>Your Progress</h5>
+
+                    </div>
+
+                </div>
+                <!--end of userdetails row-->
+
+
+                <!--exercise recommendation row-->
+                <div class="row" id="exercise">
+                    <!--Davier your section -->
+                </div>
+                <!--end of exercise recommendation row-->
+
+            </div>
+            <!--end of User details container-->
+        </section><!-- End of myplan Section -->
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class='mx-auto' style="width:250px">
+                    <h4>Stay Connected With Us</h4>
+                    <div class="social-links">
+                        <a href="" class="disabled"><i class="fa fa-twitter"></i></a>
+                        <a href="" class="disabled"><i class="fa fa-facebook"></i></a>
+                        <a href="" class="disabled"><i class="fa fa-instagram"></i></a>
+                        <a href="" class="disabled"><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--end of footer-top-->
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Step By Step</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+              -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Edited By Step By Step Team
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+    <!-- Custom JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/plan.js"></script>
+</body>
+
+</html>
