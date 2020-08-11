@@ -88,15 +88,15 @@
 
 .myplan .row,
 #myplan-quiz {
-    padding: 5%;
+    padding: 2%;
 }
 #myplan-form p {
     color: grey;
 }
 .box {
     padding: 50px 20px;
-    background-color: #89aacc;
-    color: white;
+    background-color: white;
+    color: darkslategray;
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     overflow: hidden;
@@ -104,6 +104,7 @@
 
 .box:nth-child(odd) {
     background-color: #3d77b4;
+    color: white;
 }
 
 #weightlog-form label {

@@ -10,16 +10,6 @@ $(document).ready(function () {
     Checkuser();
 }); //end doc ready
 
-$(".logout-link").click(function (e) {
-    e.preventDefault();
-    //alert($(this).attr("data-id"));
-    var userid = $(this).attr("data-id");
-    //set user as inactive
-    logout(userid);
-    window.location.href = "index.html";
-
-});
-
 function Checkuser() {
     //hide everything first
     $(".login-link").hide();
@@ -88,6 +78,7 @@ function Checkuser() {
                 $("#myplan-quiz").hide()
                 $("#user-details").show()
                 RetrieveUserinfo(id);
+                DisplayChart(id);
             }
         }
         else {
@@ -100,6 +91,14 @@ function Checkuser() {
         }
     });
 }//end of checkuser function
+
+$(".logout-link").click(function (e) {
+    e.preventDefault();
+    //alert($(this).attr("data-id"));
+    var userid = $(this).attr("data-id");
+    //set user as inactive
+    logout(userid);
+});
 
 function logout(id) {
     //set user as inactive
@@ -124,6 +123,7 @@ function logout(id) {
 
     $.ajax(settings).done(function (response) {
         console.log("User Status Updated as inactive");
+        window.location.href = "index.html";
     });
 }//end of logout function
 
@@ -186,9 +186,9 @@ $("#mealplan-form").submit(function (e) {
 $("#weightlog-form").submit(function (e) {
     e.preventDefault();
     //retrieve form values
-    var weight = $("#weightlog").val();
+    var userweight = parseFloat($("#weightlog").val());
     let weightlogData = {
-        "weight": weight,
+        "weight": userweight,
         "date": Date()
     }
     var userid = $(this).attr("data-id");
@@ -213,9 +213,13 @@ $("#weightlog-form").submit(function (e) {
     $.ajax(settings).done(function (response) {
         console.log(response);
         console.log("daily weightlog added succesfully");
-        $("this")[0].reset();
         //refresh the weightlog
         CheckWeightLog(userid);
+        //refresh chart
+        DisplayChart(userid);
+        $("weightlog-form")[0].reset();
+        //
+        Checkuser();
     });
 
 });
@@ -223,10 +227,11 @@ $("#weightlog-form").submit(function (e) {
 $("#myplan-form").submit(function (e) {
     e.preventDefault();
     //retrieve form values
-    var weight = $("#user-weight").val();
-    var height = $("#user-height").val();
+
+    var weight = parseFloat($("#user-weight").val());
+    var height = parseInt($("#user-height").val());
     var activitylvl = $('input[name="activitylvl"]:checked').val();
-    var goal = $('input[name="goal"]:checked').val();
+    var goal = parseFloat($('input[name="goal"]:checked').val());
     var userid = $(this).attr("data-id");
 
     //uncomment for debugging purpose
@@ -370,6 +375,93 @@ function formatDate(string) {
 
     return newdate;
 }
+//chart function
+
+// create initial empty chart
+var ctx = document.getElementById("mycanvas");
+var myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+        labels: [],
+        datasets: [
+            {
+                data: [],
+                borderWidth: 1,
+                borderColor: "#00c0ef",
+                label: "Weight in KG"
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: "Your Weight Daily Progress"
+        },
+        legend: {
+            display: false
+        },
+        scales: {
+            xAxes: [
+                {
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date"
+                    }
+                }
+            ],
+            yAxes: [
+                {
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Weight in KG"
+                    }
+                }
+            ]
+        }
+    }
+});
+
+function DisplayChart(id) {
+    //get user id to retrieve user weightlog details
+    console.log("Retrieving User weightlog details");
+
+    var settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id + "/weightlog?sort=date",
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache"
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log("Error: " + errorMessage);
+        }
+    };
+
+    $.ajax(settings).done(function (data) {
+        console.log("successfully log into db");
+        console.log(data);
+        console.log("total weightlog: " + data.length);
+        //do a jquery loop of json objects based on their keys(indexes)
+
+        $.each(data, function (key, value) {
+            var recordDate = formatDate(data[key].date);
+            myChart.data.labels.push(recordDate);
+            myChart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data[key].weight);
+            });
+            // myChart.data.datasets[0].data.push(data[key].weight);
+        }); //end each loop
+
+        // re-render the chart
+        myChart.update();
+    });
+} //end of display chart function
 
 function CheckWeightLog(id) {
     console.log("Checking user's weightlog")
@@ -414,7 +506,7 @@ function CheckWeightLog(id) {
             $("#weightlog-form").show();
         }
     });
-}
+}//end of check weightlog function
 
 //Meal Plan Functions
 function generate() {
@@ -458,7 +550,7 @@ function generate() {
 
         document.getElementById("mealplan-result").innerHTML = html;
     });
-}
+}//end of generate mealplan function
 
 
 

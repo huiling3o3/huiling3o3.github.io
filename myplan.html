@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label for="weight">Weight: </label>
                         <input type="number" class="form-control" id="user-weight" name="weight" style="max-width:200px"
-                            placeholder="in Kg" min="1" required>
+                            placeholder="in Kg" min="1" step="0.01" required>
                     </div>
 
                     <div class="form-group">
@@ -160,17 +160,19 @@
                             <div class="form-group">
                                 <label for="weightlog">Log Daily Weight:</label>
                                 <input type="number" class="form-control" id="weightlog" name="weight"
-                                    style="max-width:200px" placeholder="in Kg" min="1" required>
+                                    style="max-width:200px" placeholder="in Kg" min="1" step="0.01" required>
                             </div>
                             <button type="submit" class="btn-submit">Submit</button>
                         </form>
                     </div>
 
                     <!--progress  chart-->
-                    <div class="col-md-12 col-lg-4 box m-3">
+                    <div class="col-md-12 col-lg-5 box m-3">
 
                         <h5>Your Progress</h5>
-
+                        <div>
+                            <canvas id="mycanvas"></canvas>
+                        </div>
                     </div>
 
                 </div>
@@ -232,7 +234,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    <!--Chart JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
