@@ -39,13 +39,13 @@
     transition: 0.5s;
     margin: 0 20px 20px 0;
     color: #fff;
-    background: #007bff;
-    border: 2px solid #007bff;
+    background: #dd600d;
+    border: 2px solid #dd600d;
 }
 
 .btn-generate {
-    background: #2f990f;
-    border: 2px solid #2f990f;
+    background: #b6541c;
+    border: 2px solid #b6541c;
     float: right;
     margin: 0;
 }
@@ -53,12 +53,12 @@
 .btn-login:hover,
 .btn-signup:hover {
     background: none;
-    color: #007bff;
+    color: #dd600d;
 }
 
 .btn-generate:hover {
     background: none;
-    color: #2f990f;
+    color: #b6541c;
 }
 @media (max-width: 767px) {
     #login,
