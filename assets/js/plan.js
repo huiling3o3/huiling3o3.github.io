@@ -77,8 +77,9 @@ function Checkuser() {
             else {
                 $("#myplan-quiz").hide()
                 $("#user-details").show()
-                RetrieveUserinfo(id);
                 DisplayChart(id);
+                RetrieveUserinfo(id);
+
             }
         }
         else {
@@ -217,9 +218,8 @@ $("#weightlog-form").submit(function (e) {
         CheckWeightLog(userid);
         //refresh chart
         DisplayChart(userid);
-        $("weightlog-form")[0].reset();
-        //
-        Checkuser();
+        $("#weightlog-form")[0].reset();
+        //Checkuser();       
     });
 
 });
@@ -394,6 +394,7 @@ var myChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
+        animate: true,
         title: {
             display: true,
             text: "Your Weight Daily Progress"
@@ -447,17 +448,31 @@ function DisplayChart(id) {
         console.log("successfully log into db");
         console.log(data);
         console.log("total weightlog: " + data.length);
-        //do a jquery loop of json objects based on their keys(indexes)
 
-        $.each(data, function (key, value) {
-            var recordDate = formatDate(data[key].date);
-            myChart.data.labels.push(recordDate);
-            myChart.data.datasets.forEach((dataset) => {
-                dataset.data.push(data[key].weight);
-            });
-            // myChart.data.datasets[0].data.push(data[key].weight);
-        }); //end each loop
+        let total = myChart.data.labels.length;
 
+        if (total > 0) {
+            //remove duplicated values when refreshed
+            while (total >= 0) {
+                myChart.data.labels.pop();
+                myChart.data.datasets[0].data.pop();
+                total--;
+            }
+
+            //add back the values
+            $.each(data, function (key, value) {
+                var recordDate = formatDate(data[key].date);
+                myChart.data.labels.push(recordDate);
+                myChart.data.datasets[0].data.push(data[key].weight);
+            }); //end each loop
+        }
+        else {
+            $.each(data, function (key, value) {
+                var recordDate = formatDate(data[key].date);
+                myChart.data.labels.push(recordDate);
+                myChart.data.datasets[0].data.push(data[key].weight);
+            }); //end each loop
+        }
         // re-render the chart
         myChart.update();
     });
