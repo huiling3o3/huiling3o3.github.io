@@ -472,7 +472,7 @@ var myChart = new Chart(ctx, {
             {
                 data: [],
                 borderWidth: 1,
-                borderColor: "#00c0ef",
+                borderColor: "#d64d23",
                 label: "Weight in KG"
             }
         ]

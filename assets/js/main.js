@@ -7,6 +7,15 @@
 (function ($) {
   "use strict";
 
+  // Preloader (if the #preloader div exists)
+  $(window).on('load', function () {
+    if ($('#preloader').length) {
+      $('#preloader').delay(100).fadeOut('slow', function () {
+        $(this).remove();
+      });
+    }
+  });
+
   // Back to top button
   $(window).scroll(function () {
     if ($(this).scrollTop() > 100) {
@@ -39,7 +48,6 @@
   if (window.matchMedia("(max-width: 991px)").matches) {
     scrolltoOffset += 20;
   }
-
   $(document).on('click', '.main-nav a, .mobile-nav a, .scrollto', function (e) {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
