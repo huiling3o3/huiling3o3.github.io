@@ -90,6 +90,7 @@
 #myplan-quiz {
     padding: 2%;
 }
+
 #myplan-form p {
     color: grey;
 }
@@ -102,7 +103,7 @@
     overflow: hidden;
 }
 
-.box:nth-child(odd) {
+.box:nth-child(1) {
     background-color: #3d77b4;
     color: white;
 }
@@ -110,7 +111,8 @@
 #weightlog-form label {
     margin-right: 10px;
 }
-.btn-submit {
+.btn-submit,
+.btn-edit {
     display: inline-block;
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
@@ -123,12 +125,25 @@
     margin-left: 10px;
 }
 
-.btn-submit:hover {
+.btn-submit:hover,
+.btn-edit:hover {
     background: none;
     color: #033e7c;
     color: #fff;
 }
 
+.btn-edit {
+    margin: 0;
+    padding: 7px 20px;
+}
+
+#text-info {
+    margin-bottom: 5px;
+}
+
+#weightlog-message {
+    margin: 10px;
+}
 .btn-quiz-submit {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
@@ -161,6 +176,15 @@
 
 .blue {
     color: PowderBlue;
+}
+
+.orange {
+    color: #dfaa48;
+}
+/*Toast*/
+
+#toast-text {
+    color: black;
 }
 @media (max-width: 768px) {
     .myplan .container {

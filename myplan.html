@@ -32,6 +32,7 @@
 </head>
 
 <body>
+
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container">
@@ -52,9 +53,12 @@
             </nav><!-- .main-nav -->
 
         </div>
+
+
     </header><!-- #header -->
     <main id="main">
         <section class="myplan section-bg">
+
             <!-- Quiz container -->
             <div class="container" id="myplan-quiz" data-aos="zoom-in" data-aos-delay="100">
                 <form id="myplan-form" class="mx-auto">
@@ -147,13 +151,29 @@
 
             <!--User details container-->
             <div class="container" id="user-details">
+
                 <div class="row justify-content-md-center">
 
                     <!--user's goal,calories,weightlog-->
                     <div class="col-md-12 col-lg-6 box m-3">
+                        <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-autohide="true"
+                            data-delay="5000">
+                            <div class="toast-header">
+                                <strong class="mr-auto" id="toast-title">Message</strong>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="toast-body" id="toast-text">
+                                hello
+                            </div>
+                        </div>
                         <h5 id="welcome">Welcome back</h5>
-                        <p id="goal"> This week's Goal: Lose 0.5 Kg</p>
-                        <p id="cal-intake"> Recommended calories intake: 2000 kcal/day</p>
+                        <p id="goal"> This week's Goal: </p>
+                        <p id="cal-intake"> Recommended calories intake: </p>
+                        <p id="text-info">Click on edit to change your weekly goals, weight and height</p>
+                        <button type="button" class="btn-edit">Edit</button>
+
                         <!--Displayed only if the weightlog for today has been done-->
                         <p id="weightlog-message"></p>
                         <form id="weightlog-form" class="form-inline">
@@ -178,7 +198,48 @@
                 </div>
                 <!--end of userdetails row-->
 
+                <!--rewards row-->
+                <div class="row justify-content-md-center" id="rewards">
+                    <div class="col-11">
 
+                        <h3>My Rewards</h3>
+                        <p id="rewardpts">My Current Points: </p>
+                        <hr>
+                        <h5>How to earn points?</h5>
+                        <ul>
+                            <li>Log your daily weight to <strong>earn 5 points</strong></li>
+                            <li>Reach your weekly goal to <strong>earn 20 points</strong></li>
+                        </ul>
+
+                        <h5>Rewards you can get</h5>
+                        <div class="card-deck">
+                            <div class="card bg-light">
+                                <img class="card-img-top" src="assets/img/hpb-logo.jpg" alt="Card image">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">$5 HPB eVouchers</h4>
+                                    <p class="card-text">150 points</p>
+                                </div>
+                            </div>
+                            <div class="card bg-light">
+                                <img class="card-img-top" src="assets/img/hpb-logo.jpg" alt="Card image">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">$10 HPB eVouchers</h4>
+                                    <p class="card-text">200 points</p>
+                                </div>
+                            </div>
+                            <div class="card bg-light">
+                                <img class="card-img-top" src="assets/img/hpb-logo.jpg" alt="Card image">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">$15 HPB eVouchers</h4>
+                                    <p class="card-text">250 points</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--end of exercise recommendation row-->
                 <!--exercise recommendation row-->
                 <div class="row" id="exercise">
                     <!--Davier your section -->

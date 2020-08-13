@@ -7,9 +7,11 @@ var myDB = "stepbystep-904d";
 var myCollection = "people";
 
 $(document).ready(function () {
+    $('.toast').hide();
     Checkuser();
 }); //end doc ready
 
+//Needed to check user is currently login or not
 function Checkuser() {
     //hide everything first
     $(".login-link").hide();
@@ -65,21 +67,23 @@ function Checkuser() {
             $(".logout-link").attr('data-id', id);
             $("#myplan-form").attr('data-id', id);
             $("#weightlog-form").attr('data-id', id);
+            //used to cal if user reached the goal
+            $("#goal").attr('data-goal', goal);
             //check user id
             //console.log($(".logout-link").attr('data-id'));
             //console.log($("#myplan-form").attr('data-id'));
 
             //check if user is New
             if (weight == 0 || height == 0 || activitylvl == "" || goal == 0) {
-                $("#myplan-quiz").show()
-                $("#user-details").hide()
+                $("#myplan-quiz").show();
+                $("#user-details").hide();
             }
             else {
-                $("#myplan-quiz").hide()
-                $("#user-details").show()
+                $("#myplan-quiz").hide();
+                $("#user-details").show();
                 DisplayChart(id);
                 RetrieveUserinfo(id);
-
+                displaypoints(id);
             }
         }
         else {
@@ -87,7 +91,7 @@ function Checkuser() {
             $(".login-link").show();
             $(".logout-link").hide();
             //  do something if user is not active...
-            alert("Please Sign In first, to user this feature :)")
+            alert("Please Sign In first, to use this feature :)")
             window.location.href = "login.html";
         }
     });
@@ -100,6 +104,14 @@ $(".logout-link").click(function (e) {
     //set user as inactive
     logout(userid);
 });
+
+$(".btn-edit").click(function (e) {
+    e.preventDefault();
+    $("#myplan-quiz").show();
+    $("#user-details").hide();
+});
+
+
 
 function logout(id) {
     //set user as inactive
@@ -128,6 +140,76 @@ function logout(id) {
     });
 }//end of logout function
 
+
+
+
+function displaypoints(id) {
+    console.log("Retrieving User points");
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
+        "method": "GET",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache"
+        },
+        "error": function (jqXhr, textStatus, errorMessage) {
+            console.log('Error: ' + errorMessage);
+        }
+    }
+
+    $.ajax(settings).done(function (data) {
+        console.log("successfully log into db");
+        console.log(data);
+        //display user's points
+        $("#rewardpts").html("My Current Points:<span class='orange'> " + data.points + "</span>");
+        $("#rewardpts").attr('data-pts', data.points);
+        //console.log($("#rewardpts").attr('data-pts'));
+    });
+
+}//end of display points function
+
+function addPoints(id, points) {
+    console.log("adding user points");
+    //get current points from rewardpts data atrribute
+    var currentpoints = parseInt($("#rewardpts").attr("data-pts"));
+
+    var newpoints = currentpoints + points;
+    var pointsData = { "points": newpoints }
+    //put new points into the database
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
+        "method": "PATCH",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache"
+        },
+        "error": function (jqXhr, textStatus, errorMessage) {
+            console.log('Error: ' + errorMessage);
+        },
+        "processData": false,
+        "data": JSON.stringify(pointsData)
+    }
+
+    $.ajax(settings).done(function (data) {
+        console.log("points added successfully");
+        console.log(data);
+        //display the number of points added to user
+        $('.toast').show();
+        $('#toast-title').text('Congratulations🎉');
+        $('#toast-text').text('You have earned ' + points + " points!!" + " Keep up the good work!");
+        $('.toast').toast('show');
+        //refresh the points
+        displaypoints(id);
+    });
+
+}
 function RetrieveUserinfo(id) {
     //get user id to retrieve user details 
     console.log("Retrieving User details");
@@ -218,6 +300,9 @@ $("#weightlog-form").submit(function (e) {
         CheckWeightLog(userid);
         //refresh chart
         DisplayChart(userid);
+        //Add points
+        var points = 5;
+        addPoints(userid, points);
         $("#weightlog-form")[0].reset();
         //Checkuser();       
     });
@@ -478,6 +563,48 @@ function DisplayChart(id) {
     });
 } //end of display chart function
 
+function checkGoal(data, id) {
+    console.log("checking goal")
+    var first_weight = 0;
+    var last_weight = 0;
+    for (i = 0; i < data.length; i++) {
+        first_weight = parseFloat(data[0].weight);
+        last_weight = parseFloat(data[data.length - 1].weight);
+    }
+
+    var weightlost = first_weight - last_weight;
+    var goal = parseFloat($("#goal").attr("data-goal"));
+    console.log("weightlost: " + weightlost);
+    console.log("goal: " + goal);
+    if (weightlost >= goal) {
+        var points = 20;
+        addPoints(id, points);
+        console.log("goal reached!")
+    }
+}
+
+function resetWeightlog(weightlogid) {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://" + myDB + ".restdb.io/rest/weightlog/" + weightlogid,
+        "method": "DELETE",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache"
+        },
+        "error": function (jqXhr, textStatus, errorMessage) {
+            console.log('Error: ' + errorMessage);
+        }
+    }
+
+    $.ajax(settings).done(function (data) {
+        console.log(data);
+        console.log(weightlogid + " data inside weightlog successfully deleted");
+    });
+}
+
 function CheckWeightLog(id) {
     console.log("Checking user's weightlog")
     //check if today weight log record has been recorded
@@ -486,7 +613,7 @@ function CheckWeightLog(id) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id + "/weightlog",
+        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id + "/weightlog?sort=date",
         "method": "GET",
         "headers": {
             "content-type": "application/json",
@@ -502,25 +629,42 @@ function CheckWeightLog(id) {
         console.log("successfully log into db");
         console.log(data);
         console.log("total weightlog: " + data.length);
-        //do a jquery loop of json objects based on their keys(indexes)
-        var todaylog = false;
-        $.each(data, function (key, value) {
-            var recordDate = formatDate(data[key].date);
-            console.log("record date: " + recordDate + " vs " + "todaydate: " + today);
-            if (today === recordDate) {
-                todaylog = true;
-                return
-            }
-        });//end each loop        
 
-        if (todaylog == true) {
-            $("#weightlog-form").hide();
-            $('#weightlog-message').text("Today's Weightlog was done :)")
+        //check week, if one week is up check goal, reset the weightlog and ask user to set a new goal
+        if (data.length == 7) {
+            checkGoal(data, id);
+            for (i = 0; i < data.length; i++) {
+                //delete the data for that week that has passed
+                resetWeightlog(data[i]._id);
+            }
+            //inform user to set new goal
+            alert("Congrats on completing your Goal🎉🎉🎉, Now its time to set a new goal with your new weight!!");
+            $("#myplan-quiz").show();
+            $("#user-details").hide();
+
         }
         else {
-            $("#weightlog-form").show();
+            //do a jquery loop of json objects based on their keys(indexes)
+            var todaylog = false;
+            $.each(data, function (key, value) {
+                var recordDate = formatDate(data[key].date);
+                //console.log("record date: " + recordDate + " vs " + "todaydate: " + today);
+                if (today === recordDate) {
+                    todaylog = true;
+                    return
+                }
+            });//end each loop        
+
+            if (todaylog == true) {
+                $("#weightlog-form").hide();
+                $('#weightlog-message').text("Today's Weightlog was done :)")
+            }
+            else {
+                $("#weightlog-form").show();
+            }
         }
-    });
+
+    });//end of ajax function
 }//end of check weightlog function
 
 //Meal Plan Functions

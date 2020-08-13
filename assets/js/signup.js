@@ -49,7 +49,8 @@ $("#signup-form").submit(function (e) {
             weight: 0,
             height: 0,
             activitylvl: "",
-            goal: 0
+            goal: 0,
+            points: 0
         };
 
         var settings = {

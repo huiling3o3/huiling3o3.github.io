@@ -42,10 +42,7 @@ function checkLogin() {
         var success = false;
         var id = "";
         $.each(data, function (key, value) {
-            var loginDetails = {
-                email: data[key].email,
-                password: data[key].password
-            }
+
             if (email === data[key].email && password === data[key].password) {
                 success = true;
                 id = data[key]._id;
