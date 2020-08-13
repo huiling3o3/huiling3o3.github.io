@@ -30,7 +30,7 @@
 }
 
 .diet-info-btn:hover {
-    color: #007bff;
+    color: #e66f0f;
 }
 
 #mealplan-result {
@@ -47,13 +47,13 @@
     border-radius: 15px;
     transition: 0.5s;
     color: #fff;
-    background: #033e7c;
-    border: 2px solid #033e7c;
+    background: #ac4408;
+    border: 2px solid #ac4408;
 }
 
 .btn-recipe:hover {
     background: none;
-    color: #033e7c;
+    color: #7c2903;
 }
 
 .card {
@@ -97,14 +97,14 @@
 .box {
     padding: 50px 20px;
     background-color: white;
-    color: darkslategray;
+    color: rgb(79, 63, 47);
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     overflow: hidden;
 }
 
-.box:nth-child(1) {
-    background-color: #3d77b4;
+.box:nth-child(odd) {
+    background-color: #d64d23;
     color: white;
 }
 
@@ -120,15 +120,15 @@
     border-radius: 5px;
     transition: 0.5s;
     color: #fff;
-    background: #033e7c;
-    border: 2px solid #033e7c;
+    background: #a84004;
+    border: 2px solid #a84004;
     margin-left: 10px;
 }
 
 .btn-submit:hover,
 .btn-edit:hover {
     background: none;
-    color: #033e7c;
+    color: #7c2903;
     color: #fff;
 }
 
@@ -155,13 +155,13 @@
     transition: 0.5s;
     margin: 0 20px 20px 0;
     color: #fff;
-    background: #007bff;
-    border: 2px solid #007bff;
+    background: #a84004;
+    border: 2px solid #a84004;
 }
 
 .btn-quiz-submit:hover {
     background: none;
-    color: #007bff;
+    color: #a84004;
 }
 
 /*Style the text in the user details box*/
@@ -171,11 +171,11 @@
 }
 
 #weightlog-message {
-    color: LightBlue;
+    color: rgb(255, 230, 220);
 }
 
 .blue {
-    color: PowderBlue;
+    color: rgb(248, 222, 187);
 }
 
 .orange {
