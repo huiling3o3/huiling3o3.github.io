@@ -47,13 +47,13 @@
     border-radius: 15px;
     transition: 0.5s;
     color: #fff;
-    background: #ac4408;
-    border: 2px solid #ac4408;
+    background: orangered;
+    border: 2px solid orangered;
 }
 
 .btn-recipe:hover {
     background: none;
-    color: #7c2903;
+    color: orangered;
 }
 
 .card {
@@ -167,13 +167,13 @@
     -o-transition: 0.5s;
     margin: 0 20px 20px 0;
     color: #fff;
-    background: #a84004;
-    border: 2px solid #a84004;
+    background: #f78b11;
+    border: 2px solid #f78b11;
 }
 
 .btn-quiz-submit:hover {
     background: none;
-    color: #d64d23;
+    color: #f78b11;
 }
 
 /*Style the text in the user details box*/

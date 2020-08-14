@@ -79,6 +79,7 @@ function Checkuser() {
                 $("#user-details").hide();
             }
             else {
+
                 $("#myplan-quiz").hide();
                 $("#user-details").show();
                 DisplayChart(id);
@@ -472,7 +473,7 @@ var myChart = new Chart(ctx, {
             {
                 data: [],
                 borderWidth: 1,
-                borderColor: "#d64d23",
+                borderColor: "#f78b11",
                 label: "Weight in KG"
             }
         ]
