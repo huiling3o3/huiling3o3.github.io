@@ -712,13 +712,14 @@ function CheckWeightLog(id) {
 
         //check week, if one week is up check goal, reset the weightlog and ask user to set a new goal
         if (data.length == 7) {
+            //assuming the user log everyday
             checkGoal(data, id);
             for (i = 0; i < data.length; i++) {
                 //delete the data for that week that has passed
                 resetWeightlog(data[i]._id);
             }
             //inform user to set new goal
-            alert("Congrats on completing your Goal🎉🎉🎉, Now its time to set a new goal with your new weight!!");
+            alert("One Week is up, Now its time to set a new goal with your new weight!!");
             $("#myplan-quiz").show();
             $("#user-details").hide();
 
