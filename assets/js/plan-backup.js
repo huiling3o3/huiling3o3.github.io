@@ -9,6 +9,7 @@ var myCollection = "people";
 $(document).ready(function () {
     $('.toast').hide();
     Checkuser();
+    exercise();
 }); //end doc ready
 
 //Needed to check user is currently login or not
@@ -255,36 +256,12 @@ function RetrieveUserinfo(id) {
 
         // console.log("gender " + gender);
         // console.log("dob " + dob);
-        //console.log("activitylvl " + activitylvl);
+         console.log("activitylvl " + activitylvl);
         // console.log("height " + height);
         // console.log("weight " + weight);
-
-        //start of calculate exercise to recommend--------------------------------------------------------------------------------------------------------------------
-        
-        if(data.activitylvl == "mostlyseated"){
-        console.log("USER IS MOSTLY SEATED");
-        }
-
-        else if(data.activitylvl == "standinghalf"){
-        console.log("USER IS STANDING HALF THE TIME");   
-        }
-
-        else if(data.activitylvl == "walkinghalf"){
-        console.log("USER IS WALKING HALF THE TIME");   
-        }
-
-        else if(data.activitylvl == "movingconstantly"){
-        console.log("USER IS CONSTANTLY ON THE MOVE");   
-        }
-        
-        else{
-        console.log("never fill in form, empty activity level");
-        }
-
-        //end of calculate exercise to recommend----------------------------------------------------------------------------------------------------------------------
     });
 
-    
+
     
 
 }//end of retrieveuserinfo function
@@ -741,4 +718,37 @@ function generate() {
     });
 }//end of generate mealplan function
 
+//Calculate types of exercise to recommend
+function exercise(id){
+    
+    //test if function is running
+    console.log("Calculating exercises to recommend");
+
+    
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
+            "method": "GET",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": apiKey,
+                "cache-control": "no-cache"
+            },
+            "error": function (jqXhr, textStatus, errorMessage) {
+                console.log('Error: ' + errorMessage);
+            }
+        }
+    
+        $.ajax(settings).done(function (data) {
+            console.log("successfully log into db");
+            console.log(data);
+            var activitylvl = data.activitylvl;
+    
+            console.log("activitylvl " + activitylvl);
+        });
+
+
+
+} // end of exercise function
 
