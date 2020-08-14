@@ -770,7 +770,7 @@ function generate() {
 
     $.ajax(settings).done(function (data) {
         var html = "";
-        var start = "<div class='col-sm-4 my-2'><div class='card text-center p-4' ><div class='card-block'><h3 class='card-title'>";
+        var start = "<div class='col-sm-12 col-md-6 col-lg-4 my-2'><div class='card text-center p-4' ><div class='card-block'><h3 class='card-title'>";
         var end = "class='btn-recipe' target='_blank'>Recipe</a></div></div></div>";
         var myObj = data.meals;
         console.log(data);

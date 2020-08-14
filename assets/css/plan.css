@@ -200,11 +200,14 @@
     font-weight: 500;
 }
 /*Toast*/
-
 #toast-text {
     color: black;
 }
 
+/*card*/
+.card-title {
+    font-size: 1.4em;
+}
 .card {
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
