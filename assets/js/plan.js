@@ -112,7 +112,14 @@ $(".btn-edit").click(function (e) {
     $("#user-details").hide();
 });
 
+$(".btn-redeem").click(function (e) {
+    e.preventDefault();
+    var voucherpts = parseInt($(this).attr("data-points"));
+    var vouchername = $(this).attr("data-vname");
+    var id = $(".logout-link").attr("data-id");
 
+    redeemPoints(id, voucherpts, vouchername)
+});
 
 function logout(id) {
     //set user as inactive
@@ -173,6 +180,7 @@ function displaypoints(id) {
 
 }//end of display points function
 
+
 function addPoints(id, points) {
     console.log("adding user points");
     //get current points from rewardpts data atrribute
@@ -209,6 +217,77 @@ function addPoints(id, points) {
         //refresh the points
         displaypoints(id);
     });
+
+}
+function addVoucher(id, vouchername) {
+    let voucherDoc = {
+        vouchername: vouchername
+    };
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id + "/voucher",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache"
+        },
+        "error": function (jqXhr, textStatus, errorMessage) {
+            console.log('Error: ' + errorMessage);
+        },
+        "processData": false,
+        "data": JSON.stringify(voucherDoc)
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        console.log("Voucher Added succesfully")
+    });
+}
+
+function redeemPoints(id, points, vouchername) {
+    console.log("redeeming user points");
+    //get current points from rewardpts data atrribute
+    var currentpoints = parseInt($("#rewardpts").attr("data-pts"));
+    if (currentpoints >= points) {
+        var newpoints = currentpoints - points;
+        var pointsData = { "points": newpoints }
+        //put new points into the database
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
+            "method": "PATCH",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": apiKey,
+                "cache-control": "no-cache"
+            },
+            "error": function (jqXhr, textStatus, errorMessage) {
+                console.log('Error: ' + errorMessage);
+            },
+            "processData": false,
+            "data": JSON.stringify(pointsData)
+        }
+
+        $.ajax(settings).done(function (data) {
+            console.log("points updated successfully");
+            console.log(data);
+            //add voucher to the db
+            addVoucher(id, vouchername);
+            //display the number of points added to user
+            alert("Congratulations🎉🎉🎉, You have redeemed " + vouchername + " Keep up the good work!")
+            //refresh the points
+            displaypoints(id);
+        });
+    }
+    else {
+        //display error message
+        alert("Oh no...you don't have enough points");
+    }
+
 
 }
 function RetrieveUserinfo(id) {

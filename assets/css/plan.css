@@ -153,7 +153,8 @@
 #weightlog-message {
     margin: 10px;
 }
-.btn-quiz-submit {
+.btn-quiz-submit,
+.btn-redeem {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -170,8 +171,12 @@
     background: #f78b11;
     border: 2px solid #f78b11;
 }
+.btn-redeem {
+    margin: 0;
+}
 
-.btn-quiz-submit:hover {
+.btn-quiz-submit:hover,
+.btn-redeem:hover {
     background: none;
     color: #f78b11;
 }
