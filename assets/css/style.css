@@ -968,7 +968,7 @@ section {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  margin: 0 10px 0px 10px;
+  margin: 0px 10px 0px 10px;
   background: #fff;
   box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
   transition: all 0.3s ease-in-out;
@@ -982,7 +982,7 @@ section {
 
 .exercise-intensity{
   font-size: 18px;
-  color: rgb(134, 134, 134);
+  color: #ff9a57;
   text-decoration: none;  
   
 }
@@ -993,7 +993,20 @@ section {
   text-decoration: none;
 }
 
+.exercise-desc{
+  font-size: 15px;
+  color: #6c757d;
+  text-decoration: none;
+}
+
 .exercise-img{
   max-height: 300px;
   width: 400px;
+  border-radius: 10px;
+}
+
+.exercise-img:hover{
+  /*
+  box-shadow:  0 0 15px 0 #ffd4b7;
+  */
 }
