@@ -263,22 +263,42 @@ function RetrieveUserinfo(id) {
         
         if(data.activitylvl == "mostlyseated"){
         console.log("USER IS MOSTLY SEATED");
+        $("#exercise-low").show();
+        $("#exercise-midlow").hide();
+        $("#exercise-mid").hide();
+        $("#exercise-midhigh").hide();
         }
 
         else if(data.activitylvl == "standinghalf"){
-        console.log("USER IS STANDING HALF THE TIME");   
+        console.log("USER IS STANDING HALF THE TIME"); 
+        $("#exercise-low").hide();
+        $("#exercise-midlow").show();
+        $("#exercise-mid").hide();
+        $("#exercise-midhigh").hide();  
         }
 
         else if(data.activitylvl == "walkinghalf"){
-        console.log("USER IS WALKING HALF THE TIME");   
+        console.log("USER IS WALKING HALF THE TIME");
+        $("#exercise-low").hide();
+        $("#exercise-midlow").hide();
+        $("#exercise-mid").show();
+        $("#exercise-midhigh").hide();  
         }
 
         else if(data.activitylvl == "movingconstantly"){
-        console.log("USER IS CONSTANTLY ON THE MOVE");   
+        console.log("USER IS CONSTANTLY ON THE MOVE");  
+        $("#exercise-low").hide();
+        $("#exercise-midlow").hide();
+        $("#exercise-mid").hide();
+        $("#exercise-midhigh").show();   
         }
         
         else{
         console.log("never fill in form, empty activity level");
+        $("#exercise-low").hide();
+        $("#exercise-midlow").hide();
+        $("#exercise-mid").hide();
+        $("#exercise-midhigh").hide(); 
         }
 
         //end of calculate exercise to recommend----------------------------------------------------------------------------------------------------------------------

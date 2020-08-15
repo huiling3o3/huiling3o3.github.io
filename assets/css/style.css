@@ -993,5 +993,7 @@ section {
   text-decoration: none;
 }
 
-.exercise-row{
+.exercise-img{
+  max-height: 300px;
+  width: 400px;
 }
