@@ -113,7 +113,14 @@ $(".btn-edit").click(function (e) {
     $("#user-details").hide();
 });
 
+$(".btn-redeem").click(function (e) {
+    e.preventDefault();
+    var voucherpts = parseInt($(this).attr("data-points"));
+    var vouchername = $(this).attr("data-vname");
+    var id = $(".logout-link").attr("data-id");
 
+    redeemPoints(id, voucherpts, vouchername)
+});
 
 function logout(id) {
     //set user as inactive
@@ -174,6 +181,7 @@ function displaypoints(id) {
 
 }//end of display points function
 
+
 function addPoints(id, points) {
     console.log("adding user points");
     //get current points from rewardpts data atrribute
@@ -210,6 +218,77 @@ function addPoints(id, points) {
         //refresh the points
         displaypoints(id);
     });
+
+}
+function addVoucher(id, vouchername) {
+    let voucherDoc = {
+        vouchername: vouchername
+    };
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id + "/voucher",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache"
+        },
+        "error": function (jqXhr, textStatus, errorMessage) {
+            console.log('Error: ' + errorMessage);
+        },
+        "processData": false,
+        "data": JSON.stringify(voucherDoc)
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        console.log("Voucher Added succesfully")
+    });
+}
+
+function redeemPoints(id, points, vouchername) {
+    console.log("redeeming user points");
+    //get current points from rewardpts data atrribute
+    var currentpoints = parseInt($("#rewardpts").attr("data-pts"));
+    if (currentpoints >= points) {
+        var newpoints = currentpoints - points;
+        var pointsData = { "points": newpoints }
+        //put new points into the database
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://" + myDB + ".restdb.io/rest/" + myCollection + "/" + id,
+            "method": "PATCH",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": apiKey,
+                "cache-control": "no-cache"
+            },
+            "error": function (jqXhr, textStatus, errorMessage) {
+                console.log('Error: ' + errorMessage);
+            },
+            "processData": false,
+            "data": JSON.stringify(pointsData)
+        }
+
+        $.ajax(settings).done(function (data) {
+            console.log("points updated successfully");
+            console.log(data);
+            //add voucher to the db
+            addVoucher(id, vouchername);
+            //display the number of points added to user
+            alert("Congratulations🎉🎉🎉, You have redeemed " + vouchername + " Keep up the good work!")
+            //refresh the points
+            displaypoints(id);
+        });
+    }
+    else {
+        //display error message
+        alert("Oh no...you don't have enough points");
+    }
+
 
 }
 function RetrieveUserinfo(id) {
@@ -682,13 +761,14 @@ function CheckWeightLog(id) {
 
         //check week, if one week is up check goal, reset the weightlog and ask user to set a new goal
         if (data.length == 7) {
+            //assuming the user log everyday
             checkGoal(data, id);
             for (i = 0; i < data.length; i++) {
                 //delete the data for that week that has passed
                 resetWeightlog(data[i]._id);
             }
             //inform user to set new goal
-            alert("Congrats on completing your Goal🎉🎉🎉, Now its time to set a new goal with your new weight!!");
+            alert("One Week is up, Now its time to set a new goal with your new weight!!");
             $("#myplan-quiz").show();
             $("#user-details").hide();
 
@@ -739,7 +819,7 @@ function generate() {
 
     $.ajax(settings).done(function (data) {
         var html = "";
-        var start = "<div class='col-sm-4 my-2'><div class='card text-center p-4' ><div class='card-block'><h3 class='card-title'>";
+        var start = "<div class='col-sm-12 col-md-6 col-lg-4 my-2'><div class='card text-center p-4' ><div class='card-block'><h3 class='card-title'>";
         var end = "class='btn-recipe' target='_blank'>Recipe</a></div></div></div>";
         var myObj = data.meals;
         console.log(data);
