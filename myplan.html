@@ -194,6 +194,30 @@
                         <div>
                             <canvas id="mycanvas"></canvas>
                         </div>
+
+                    <!-- Sync button -->
+
+                        <br>
+                        <div class="sync-text">Track your progress on your apple watch!</div>
+                        <a class="sync-button" href="#sync-popup" id="open-popup">Sync</a>
+                    </div>
+
+                    <!-- Sync pop up -->
+
+                    <div id="popup-modal" class="popup">
+
+                    <div class="popup-content">
+                    <span class="close" id="close">&times;</span>
+                    <br>
+                    <div class="popup-text">Syncing</div>
+                    <div class="popup-desc">Please bring apple watch near your device</div>
+                    <div class="row">
+                        <div class="col-lg-6"><img src="assets/img/sync/watch.jpeg" alt="device image" class="popup-img right"></div>
+                        <div class="col-lg-6"><img src="assets/img/sync/laptop.jpeg" alt="device image" class="popup-img left"></div>
+
+                    </div>
+                    </div>
+
                     </div>
 
                 </div>
@@ -618,6 +642,7 @@
     <!-- Custom JS File -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/plan.js"></script>
+    <script src="assets/js/popup.js"></script>
 </body>
 
 </html>
