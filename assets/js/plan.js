@@ -339,52 +339,52 @@ function RetrieveUserinfo(id) {
         // console.log("weight " + weight);
 
         //start of calculate exercise to recommend--------------------------------------------------------------------------------------------------------------------
-        
-        if(data.activitylvl == "mostlyseated"){
-        console.log("USER IS MOSTLY SEATED");
-        $("#exercise-low").show();
-        $("#exercise-midlow").hide();
-        $("#exercise-mid").hide();
-        $("#exercise-midhigh").hide();
+
+        if (data.activitylvl == "mostlyseated") {
+            console.log("USER IS MOSTLY SEATED");
+            $("#exercise-low").show();
+            $("#exercise-midlow").hide();
+            $("#exercise-mid").hide();
+            $("#exercise-midhigh").hide();
         }
 
-        else if(data.activitylvl == "standinghalf"){
-        console.log("USER IS STANDING HALF THE TIME"); 
-        $("#exercise-low").hide();
-        $("#exercise-midlow").show();
-        $("#exercise-mid").hide();
-        $("#exercise-midhigh").hide();  
+        else if (data.activitylvl == "standinghalf") {
+            console.log("USER IS STANDING HALF THE TIME");
+            $("#exercise-low").hide();
+            $("#exercise-midlow").show();
+            $("#exercise-mid").hide();
+            $("#exercise-midhigh").hide();
         }
 
-        else if(data.activitylvl == "walkinghalf"){
-        console.log("USER IS WALKING HALF THE TIME");
-        $("#exercise-low").hide();
-        $("#exercise-midlow").hide();
-        $("#exercise-mid").show();
-        $("#exercise-midhigh").hide();  
+        else if (data.activitylvl == "walkinghalf") {
+            console.log("USER IS WALKING HALF THE TIME");
+            $("#exercise-low").hide();
+            $("#exercise-midlow").hide();
+            $("#exercise-mid").show();
+            $("#exercise-midhigh").hide();
         }
 
-        else if(data.activitylvl == "movingconstantly"){
-        console.log("USER IS CONSTANTLY ON THE MOVE");  
-        $("#exercise-low").hide();
-        $("#exercise-midlow").hide();
-        $("#exercise-mid").hide();
-        $("#exercise-midhigh").show();   
+        else if (data.activitylvl == "movingconstantly") {
+            console.log("USER IS CONSTANTLY ON THE MOVE");
+            $("#exercise-low").hide();
+            $("#exercise-midlow").hide();
+            $("#exercise-mid").hide();
+            $("#exercise-midhigh").show();
         }
-        
-        else{
-        console.log("never fill in form, empty activity level");
-        $("#exercise-low").hide();
-        $("#exercise-midlow").hide();
-        $("#exercise-mid").hide();
-        $("#exercise-midhigh").hide(); 
+
+        else {
+            console.log("never fill in form, empty activity level");
+            $("#exercise-low").hide();
+            $("#exercise-midlow").hide();
+            $("#exercise-mid").hide();
+            $("#exercise-midhigh").hide();
         }
 
         //end of calculate exercise to recommend----------------------------------------------------------------------------------------------------------------------
     });
 
-    
-    
+
+
 
 }//end of retrieveuserinfo function
 
@@ -708,7 +708,8 @@ function checkGoal(data, id) {
     if (weightlost >= goal) {
         var points = 20;
         addPoints(id, points);
-        console.log("goal reached!")
+        console.log("goal reached!");
+        alert("Congrats🎉🎉🎉, you have reached your goal!!! You have earned 20 more points");
     }
 }
 
@@ -732,6 +733,20 @@ function resetWeightlog(weightlogid) {
         console.log(data);
         console.log(weightlogid + " data inside weightlog successfully deleted");
     });
+}
+
+function checkOneWeek(firstdate, today) {
+    //convert the string to a date
+    var initial_date = new Date(firstdate);
+    var one_week = initial_date.setDate(initial_date.getDate() + 7);
+    //format date
+    one_week = formatDate(one_week);
+
+    //check if today is one week
+    if (today === one_week) {
+        return true
+    }
+    else { return false }
 }
 
 function CheckWeightLog(id) {
@@ -760,21 +775,27 @@ function CheckWeightLog(id) {
         console.log("total weightlog: " + data.length);
 
         //check week, if one week is up check goal, reset the weightlog and ask user to set a new goal
-        if (data.length == 7) {
-            //assuming the user log everyday
+        var check_week = checkOneWeek(data[0].date, today);
+
+        if (check_week === true) {
+            //meaning today is the date one week has passed
+
+            //check gaol
             checkGoal(data, id);
+
+            //reset weightlog
             for (i = 0; i < data.length; i++) {
                 //delete the data for that week that has passed
                 resetWeightlog(data[i]._id);
             }
+
             //inform user to set new goal
             alert("One Week is up, Now its time to set a new goal with your new weight!!");
             $("#myplan-quiz").show();
             $("#user-details").hide();
-
         }
-        else {
-            //do a jquery loop of json objects based on their keys(indexes)
+        else { //one week has not reached
+
             var todaylog = false;
             $.each(data, function (key, value) {
                 var recordDate = formatDate(data[key].date);
@@ -785,7 +806,7 @@ function CheckWeightLog(id) {
                 }
             });//end each loop        
 
-            if (todaylog == true) {
+            if (todaylog === true) {
                 $("#weightlog-form").hide();
                 $('#weightlog-message').text("Today's Weightlog was done :)")
             }
