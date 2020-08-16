@@ -57,7 +57,7 @@
         <section class="myplan section-bg">
 
             <!-- Quiz container -->
-            <div class="container" id="myplan-quiz" data-aos="zoom-in" data-aos-delay="100">
+            <div class="container w-auto" id="myplan-quiz" data-aos="zoom-in" data-aos-delay="100">
                 <form id="myplan-form" class="mx-auto">
                     <h3>Let's take a quiz before we get started!</h3>
                     <p>This quiz will determine your goal, exercises and calculate your recommended calorie intake!</p>
@@ -156,7 +156,7 @@
                 <div class="row justify-content-md-center">
 
                     <!--user's goal,calories,weightlog-->
-                    <div class="col-md-12 col-lg-6 box m-3">
+                    <div class="col-md-11 col-lg-6 box m-3">
                         <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-autohide="true"
                             data-delay="5000">
                             <div class="toast-header">
@@ -188,7 +188,7 @@
                     </div>
 
                     <!--progress  chart-->
-                    <div class="col-md-12 col-lg-5 box m-3">
+                    <div class="col-md-11 col-lg-5 box m-3">
 
                         <h5>Your Progress</h5>
                         <div>
@@ -213,39 +213,60 @@
                         </ul>
 
                         <h5>Rewards you can get</h5>
-                        <div class="card-deck">
-                            <div class="card bg-light">
-                                <img class="card-img-top" src="assets/img/hpb-logo.jpg" alt="Card image">
-                                <div class="card-body text-center">
-                                    <h4 class="card-title">$5 HPB eVouchers</h4>
-                                    <p class="card-text">150 points</p>
-                                    <button type="button" class="btn-redeem" data-points="150"
-                                        data-vname="$5 HPB eVouchers">Redeem</button>
+                        <div class="rewards-container">
+                            <div class="row">
+                                <!--first card-->
+                                <div class="col-md-6 col-lg-4 py-2">
+                                    <div class="card h-100 bg-light">
+                                        <img class="card-img-top img-fluid" src="assets/img/hpb-logo.jpg"
+                                            alt="Card image">
+                                        <div class="card-block text-center">
+                                            <h4 class="card-title">$5 HPB eVouchers</h4>
+                                            <p class="card-text">150 points</p>
+                                            <button type="button" class="btn-redeem" data-points="150"
+                                                data-vname="$5 HPB eVouchers">Redeem</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card bg-light">
-                                <img class="card-img-top" src="assets/img/hpb-logo.jpg" alt="Card image">
-                                <div class="card-body text-center">
-                                    <h4 class="card-title">$10 HPB eVouchers</h4>
-                                    <p class="card-text">200 points</p>
-                                    <button type="button" class="btn-redeem" data-points="200"
-                                        data-vname="$10 HPB eVouchers">Redeem</button>
+
+                                <!--2nd card-->
+                                <div class="col-md-6 col-lg-4 py-2">
+                                    <div class="card h-100 bg-light">
+                                        <img class="card-img-top img-fluid" src="assets/img/hpb-logo.jpg"
+                                            alt="Card image">
+                                        <div class="card-block text-center">
+                                            <h4 class="card-title">$10 HPB eVouchers</h4>
+                                            <p class="card-text">200 points</p>
+                                            <button type="button" class="btn-redeem" data-points="200"
+                                                data-vname="$10 HPB eVouchers">Redeem</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card bg-light">
-                                <img class="card-img-top" src="assets/img/fairprice-logo.jpg" alt="Card image">
-                                <div class="card-body text-center">
-                                    <h4 class="card-title">$5 Fairprice eVouchers</h4>
-                                    <p class="card-text">250 points</p>
-                                    <button type="button" class="btn-redeem" data-points="150"
-                                        data-vname="$5 Fairprice eVouchers">Redeem</button>
+
+                                <!--3rd card-->
+                                <div class="col-md-6 col-lg-4 py-2">
+                                    <div class="card h-100 bg-light">
+                                        <img class="card-img-top img-fluid" src="assets/img/fairprice-logo.jpg"
+                                            alt="Card image">
+                                        <div class="card-block text-center">
+                                            <h4 class="card-title">$5 Fairprice eVouchers</h4>
+                                            <p class="card-text">250 points</p>
+                                            <button type="button" class="btn-redeem" data-points="150"
+                                                data-vname="$5 Fairprice eVouchers">Redeem</button>
+                                        </div>
+                                    </div>
                                 </div>
+
+
                             </div>
+                            <!--end of card row-->
                         </div>
+                        <!--end of card container-->
+
                     </div>
+                    <!--end of col-11-->
 
                 </div>
-
                 <!--end of rewards row-->
 
                 <!--exercise recommendation row-->
@@ -256,6 +277,7 @@
                         <br>
                         <div id="exercise">
                             <h3>Recommended exercises</h3>
+                            <p>These exercises are recommended based on your activeness</p>
                             <p class="exercise-desc">Click on the images for video tutorials!</p>
                         </div>
 
