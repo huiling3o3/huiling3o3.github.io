@@ -158,7 +158,8 @@
     margin: 10px;
 }
 .btn-quiz-submit,
-.btn-redeem {
+.btn-redeem,
+.sync-button {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -185,6 +186,10 @@
     color: #f78b11;
 }
 
+.sync-button:hover {
+    background: none;
+    color: grey;
+}
 /*Style the text in the user details box*/
 #welcome {
     font-family: "Montserrat", sans-serif;
