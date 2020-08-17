@@ -799,6 +799,25 @@ section {
     font-size: 1.8em;
   }
 }
+/*Apple Watch Section*/
+#applewatch-section {
+  background: rgb(238, 222, 222);
+  padding: 60px 20px;
+}
+
+#applewatch-section .applewatch-container .title {
+  color: #333;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+#applewatch-section .applewatch-container p {
+  line-height: 26px;
+}
+
+#applewatch-section .feature-text {
+  color: #283d50;
+}
 
 /* Team Section
 --------------------------------*/
